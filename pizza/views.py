@@ -31,6 +31,9 @@ def index(request):
     }
     return render(request,'pages/index.html',context)
 
+def indexarab(request):
+    return render(request,'pages/indexarab.html')
+
 def signup(request):
     fname=''
     lname=None
@@ -45,7 +48,7 @@ def signup(request):
     terms=None
     username=None
     if request.method == 'POST' and 'btnsubmitup' in request.POST:
-        if 'fname' in request.POST and 'user' in request.POST and 'phone' in request.POST and 'city' in request.POST and 'email' in request.POST and 'confirmpass' in request.POST and 'gender' in request.POST and 'terms' in request.POST and 'pass' in request.POST:
+        if 'fname' in request.POST and 'user' in request.POST and 'phone' in request.POST and 'city' in request.POST and 'confirmpass' in request.POST  and 'terms' in request.POST and 'pass' in request.POST:
             fname=request.POST['fname']
             username=request.POST['user']
             phone=request.POST['phone']
@@ -221,6 +224,157 @@ def signup(request):
     else:    
         return render(request,'pages/profile/signup.html')
 
+def signuparab(request):
+    fname=''
+    lname=None
+    phone=''
+    city=''
+    password=''
+    email=''
+    confirm =''
+    gender=''
+    matt=None
+    matt2=None
+    terms=None
+    username=None
+    if request.method == 'POST' and 'btnsubmitup' in request.POST:
+        if 'fnamear' in request.POST  and 'phonear' in request.POST and 'cityar' in request.POST  and 'confirmpassar' in request.POST and 'terms' in request.POST and 'passar' in request.POST:
+            fname=request.POST['fnamear']
+           
+            phone=request.POST['phonear']
+            city=request.POST['cityar']
+            password=request.POST['passar']
+            
+            confirm=request.POST['confirmpassar']
+            
+            matt=re.match("[0-9]",password)
+            matt2=re.match("[a-zA-z]",password)
+            ismatched=bool(matt)
+            ismatched2=bool(matt2)
+            terms=request.POST['terms']
+            if fname  and phone and city and password  and confirm :
+                if password != confirm:
+                     messages.warning(request,'يجب ان تتساوى كلمتى السر')
+                     fname=request.POST['fnamear']
+                    
+                     phone=request.POST['phonear']
+                     city=request.POST['cityar']
+                     password=request.POST['passar']
+                   
+                     confirm=request.POST['confirmpassar']
+                    
+                     return render(request,'pages/profile/signuparab.html',{
+           'fnamear':fname,
+          
+           'phonear':phone,
+           'cityar':city,
+           'passar':password,
+           'confirmpassar':confirm,
+           
+        })
+                elif len(password)<8:
+                      messages.warning(request,'يجب ان تتكون كلمة السر من ثمان عناصر تتضمن حرف انجليزى كبير و حرف انجليزى صغير و رقم')
+                      fname=request.POST['fnamear']
+                     
+                      phone=request.POST['phonear']
+                      city=request.POST['cityar']
+                      password=request.POST['passar']
+                      
+                      confirm=request.POST['confirmpassar']
+                      
+                      return render(request,'pages/profile/signuparab.html',{
+           'fnamearab':fname,
+           
+           'phonear':phone,
+           'cityar':city,
+           'passar':password,
+           
+           'confirmpassar':confirm,
+           
+        })
+               
+                elif  ismatched:
+                     messages.warning(request,'يجب ان تتكون كلمة السر من ثمان عناصر تتضمن حرف انجليزى كبير و حرف انجليزى صغير و رقم')
+                     fname=request.POST['fnamear']
+                    
+                     phone=request.POST['phonear']
+                     city=request.POST['cityar']
+                     password=request.POST['passar']
+                     
+                     confirm=request.POST['confirmpassar']
+                     
+                     return render(request,'pages/profile/signuparab.html',{
+           'fnamear':fname,
+          
+           'phonear':phone,
+           'cityar':city,
+           'passar':password,
+           
+           'confirmpassar':confirm,
+          
+        })
+                elif not re.findall("[a-z]",password) or not re.findall("[A-Z]",password)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   :
+                     messages.warning(request,' يجب ان تتكون كلمة السر من ثمان عناصر تتضمن حرف انجليزى كبير و حرف انجليزى صغير و رقم')
+                     fname=request.POST['fnamear']
+                     
+                     phone=request.POST['phonear']
+                     city=request.POST['cityar']
+                     password=request.POST['passar']
+                     
+                     confirm=request.POST['confirmpassar']
+                     
+                     return render(request,'pages/profile/signuparab.html',{
+           'fnamear':fname,
+          
+           'phonear':phone,
+           'cityar':city,
+           'passar':password,
+         
+           'confirmpassar':confirm,
+           
+        })
+                
+                else:
+                    user=User.objects.create_user(username=fname,password=password)
+                    
+                    
+                    user.save()
+                    customerprofile=customers(
+                        user=user,name=fname,phone=phone,city=city,
+                    )
+                    customerprofile.save()
+                    fname=''
+                   
+                    phone=''
+                    city=''
+                    password=''
+                   
+                    confirm=''
+                   
+
+
+
+                    messages.success(request,format_html("كى تتمكن من حضور محاضراتك<a href='/signinarab' style='color:green;'>سجل دخول</a> لقد قمت بالاشتراك بنجاح"))
+                    return redirect('signup')
+                   
+        else:
+            messages.warning(request,'something went wrong!')
+            return render(request,'pages/profile/signup.html',{
+           'fname':fname,
+           'user':username,
+           'phone':phone,
+           'city':city,
+           'pass':password,
+           'email':email,
+           'confirmpass':confirm,
+           'gender':gender
+        })
+        
+
+
+    else:    
+        return render(request,'pages/profile/signuparab.html')
+
 def signin(request):
     username=None
     password=None
@@ -251,6 +405,36 @@ def signin(request):
     else:  
        
         return render(request,'pages/profile/signin.html')
+def signinarab(request):
+    username=None
+    password=None
+    if request.method=='POST' and 'btnsubmit' in request.POST and 'userar' in request.POST and 'pswar' in request.POST and 'agree' in request.POST:
+       
+           username=request.POST['userar']
+           password=request.POST['pswar']
+           if username and password:
+                user=auth.authenticate(username=username,password=password)
+                if user is not None:
+                   auth.login(request,user)
+                   messages.success(request,'لقد تم تسجيل دخولك بنجاح')
+                   username=''
+                   password=''
+                else:
+                    messages.warning(request,'خطأ فى اسم المستخدم او كلمة السر')
+                    return render(request,'pages/profile/signinarab.html',
+                    {
+                        'username':username,
+                        'password':password
+                    }
+                    )
+           else:
+                messages.warning(request,'خطأ فى اسم المستخدم او كلمة السر') 
+                return redirect('signinarab') 
+                  
+           return redirect('signinarab')
+    else:  
+       
+        return render(request,'pages/profile/signinarab.html')        
 
 def profile(request):
     fname=None

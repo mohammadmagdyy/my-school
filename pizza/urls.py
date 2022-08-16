@@ -12,8 +12,11 @@ from django.conf import settings
 urlpatterns = [
     path('',views.index, name="index"),
     path('signup',views.signup,name="signup"),
+    path('signuparab',views.signuparab,name="signuparab"),
+    path('indarab',views.indexarab,name="indexarab"),
     path('logout',views.logout,name="logout"),
     path('signin',views.signin,name="signin"),
+    path('signinarab',views.signinarab,name="signinarab"),
     path('profile',views.profile,name="profile"),
     path('pizza',views.pizza,name="pizza"),
     path('flavor/<int:pro_id>',views.product,name="flavor"),

@@ -1,8 +1,8 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <a class="navbar-brand" href="{% url 'index' %}">
+    <a class="navbar-brand" href="{% url 'indexarab' %}">
     <img src="{% static 'img/myschool.png'%}" class="img-brand" alt="mypizza">
-    Myschool
+   مدرستى
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
           {% else %}
           <li class="nav-item ">
             {% endif %}
-          <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'index' %}">الصفحة الرئيسية <span class="sr-only">(current)</span></a>
         </li>
         {% if 'signin' in request.path or 'signup' in request.path or 'profile' in request.path or 'mycard' in request.path or 'payment' in request.path %}
         <li class="nav-item dropdown active">
@@ -28,7 +28,7 @@
                </a>
                {% else %}
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                join us
+                تواصل معنا
                </a>
               {% endif %}
           
@@ -36,12 +36,12 @@
             {% if request.user.is_authenticated %}
             <a class="dropdown-item" href="#">hi ({{request.user.username}}) </a>
             {% else %}
-            <a class="dropdown-item" href="{% url 'signin' %}">sign in </a>
+            <a class="dropdown-item" href="{% url 'signinarab' %}">تسجيل دخول </a>
             {% endif %}
             {% if request.user.is_authenticated %}
             <a class="dropdown-item" href="{% url 'mycard'  %}">My Reservation</a>
             {% else %}
-            <a class="dropdown-item" href="{% url 'signup' %}">sign up</a>
+            <a class="dropdown-item" href="{% url 'signuparab' %}">اشتراك</a>
               {% endif %}
               {% if request.user.is_authenticated %}
             <div class="dropdown-divider"></div>
@@ -57,21 +57,9 @@
          
           
                
-                {% if 'search' in request.path or 'flavor' in request.path  %}
-                <li class="nav-item dropdown active">
-                  {% else %}
-                  <li class="nav-item  dropdown">
-
-                 {% endif %}
+              
           
-          <div class="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'flavor' pro_id=1 %}">margrite</a>
-            <a class="dropdown-item" href="{%  url 'flavor' pro_id=3 %}">pasterma</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'flavor' pro_id=5 %}">sodo2</a>
-            <a class="dropdown-item" href="{% url 'products' %}">All Products</a>
-          </div>
-        </li>
+        
         {% if 'about' in request.path %}
         <li class="nav-item active">
           {% else %}
@@ -83,10 +71,10 @@
       </ul>
       <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'generalsearch' %}">
         {% csrf_token %}
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="inputsearch">
-        <button type="submit"class="btn btn-outline-success my-2 my-sm-0"  name="btnsearch">Search</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="بحث" aria-label="Search" name="inputsearch">
+        <button type="submit"class="btn btn-outline-success my-2 my-sm-0"  name="btnsearch">بحث</button>
       </form>
-       
+        
                
     
     </div>
