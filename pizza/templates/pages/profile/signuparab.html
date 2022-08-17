@@ -46,16 +46,28 @@
       
         <div class="col-lg-7 mb-3">
           <label for="validationServer01">اسم الطالب</label>
-          <input type="text" class="form-control " style="height:45px;"name="fnamear" id="validationServer01" placeholder="ادخل الاسم الخاص بك" value="{{fname}}" required>
+          <input type="text" class="form-control " style="height:45px;"name="fnamear" id="validationServer01" placeholder="ادخل الاسم الخاص بك" value="{{fnamear}}" required>
           <div class="valid-feedback">
             Looks good!
           </div>
         </div>
-        
+        <div class="col-lg-7 mb-3">
+            <label for="validationServer01">اسم المستخدم</label>
+            <input type="text" class="form-control " style="height:45px;"name="userar" id="validationServer0114" placeholder="ادخل اسم المستخدم الخاص بك" value="{{userar}}" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div>
+              <h6 id="username" style="display:none;">
+                    احفظه جيدا لكى تستخدمه فى تسجيل الدخول
+              </h6>
+            </div>
+          </div>
+          
       
       <div class="col-lg-7  mb-3">
           <label for="validationServer03">رقم الهاتف</label>
-          <input type="tel" class="form-control " style="height:45px;"name="phonear" id="validationServer03" placeholder="ادخل رقم الهاتف الخاص بك" value="{{phone}}" required>
+          <input type="tel" class="form-control " style="height:45px;"name="phonear" id="validationServer03" placeholder="ادخل رقم الهاتف الخاص بك" value="{{phonear}}" required>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -73,7 +85,7 @@
           <div class="input-group">
             
           <input type="password" class="form-control " style="height:45px;"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="passar" id="validationServer0112" placeholder="ادخل كلمة سر مناسبة"name="password"
-          value="{{pass}}"
+          value="{{passar}}"
       data-by-identical="true"
        data-by-identical-field="confirm password"
         data-by-identical-message="the password and its confirm are not the same"
@@ -95,7 +107,7 @@
         </div>
         <div class="col-lg-6  mb-3">
           <label for="validationServer02">تاكيد كلمة السر</label>
-          <input type="password" class="form-control " style="height:45px;" value="{{confirmpass}}" name="confirmpassar" id="validationServer02" placeholder="قم بتاكيد كلمة السر" 
+          <input type="password" class="form-control " style="height:45px;" value="{{confirmpassar}}" name="confirmpassar" id="validationServer02" placeholder="قم بتاكيد كلمة السر" 
                  data-by-identical="true"
        data-by-identical-field="password"
         data-by-identical-message="the password and its confirm are not the same"
@@ -110,9 +122,9 @@
        
          
            
-              <label  >
-                <span id="numb" class="invalid"> رقم</span>  و <span id="low" class="invalid">حرف انجليزى صغير</span>و<span id="up" class="invalid">حرف انجليزى كبير</span>تتضمن<span id="char" class="invalid">على الاقل ثمان عناصر</span>كلمة السر يجب ان تتكون من
-               </label>
+        </p  >
+        كلمة السر يجب ان تتكون من <span id="char" class="invalid">على الاقل ثمان عناصر  </span> تتضمن </span> <span id="up" class="invalid">حرف انجليزى كبير </span>,<span id="low" class="invalid">حرف انجليزى صغير</span>,<span id="numb" class="invalid"> رقم</span> 
+              <p>
            
           
          </div>
@@ -126,7 +138,7 @@
       <div class="form-row">
         <div class="col-lg-6 mb-3">
           <label for="validationServer03">العنوان</label>
-          <input type="text" class="form-control" style="height:45px;"value="{{city}}" name="cityar" id="validationServer033" aria-describedby="validationServer03Feedback" placeholder="ادخل عنوانك" required>
+          <input type="text" class="form-control" style="height:45px;"value="{{cityar}}" name="cityar" id="validationServer033" aria-describedby="validationServer03Feedback" placeholder="ادخل عنوانك" required>
           <div id="validationServer03Feedback" class="invalid-feedback">
             Please provide a valid address.
           </div>
@@ -158,7 +170,7 @@
       {% else %}
       <div class="form-row d-flex justify-content-center">
       <div class="col-lg-6 mb-3">
-      <button class="btn btn-outline-success" name="btnsubmitup"type="submit"data-toggle="modal"data-target="#exampleModal" onclick="showmodel()">اشترك </button>
+      <button class="btn btn-outline-success" name="btnsubmitup"type="submit" onclick="showmodel()">اشترك </button>
       </div>
       <div class="col-lg-6 mb-3">
       <button class="btn btn-outline-danger" type="reset" >اعد كتابة البيانات</button>
@@ -168,44 +180,6 @@
 
         
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog  modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Check</h5>
-            <button type="button" class="btn-close" data-dismiss="modal"id="btnexit" aria-label="Close">&times </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" id="frmpay" action="{% url 'payment' %}">
-                {% csrf_token %}
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Shipment Address:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentaddress" placeholder="Enter the address you want to recieve your order in.." value="{{shipadd}}"required>
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Shipment Phone:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentphone" placeholder="Enter your phone number" value="{{shipphon}}" required>
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Card Number:</label>
-                <input class="form-control" id="exampleInputEmail1" placeholder="333 333 333 333" name="cardnumber" value="{{cardno}}" required>
-              </div>
-              <div class="form-row">
-              <div class="col-lg-6 mb-3">
-                <label for="recipient-name" class="col-form-label">Expire Date:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="expiredate" placeholder="mm/yy" value="{{date}}"required>
-              </div>
-              <div class="col-lg-6 mb-3">
-                <label for="recipient-name" class="col-form-label">Security code:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="securitycode" placeholder="333" value="{{code}}" required>
-              </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer  justify-content-center">
-            <button type="button" id="mod" data-dismiss="modal"  class="btn btn-outline-warning">Close</button>
-            <button onclick="pay()" href="{% url 'payment' %}" name="btnpayment"  class="btn btn-outline-danger">Payment</button>
-          </div>
         
         </div>
         
@@ -234,6 +208,18 @@
      }
     
     }
+    </script>
+    <script>
+      var un=document.getElementById("validationServer0114");
+      var us=document.getElementById("username");
+      un.onfocus=function(){
+        us.style.display="block";
+
+      }
+      un.onblur=function(){
+        us.style.display="none";
+
+      }
     </script>
     <script>
       var pass = document.getElementById("validationServer0112");

@@ -6,7 +6,7 @@
   <form id="identicalForm" class="form-horizontal" data-by-feedback-icons-valid="glyphicon glyphicon-ok"
   data-by-feedback-icons-invalid="glyphicon glyphicon-remove"
    data-by-feedback-icons-validating="glyphicon glyphicon-refresh"
-  method="POST"
+  method="POST" action="{% url 'signinarab' %}"
    >
    {% csrf_token %}
    

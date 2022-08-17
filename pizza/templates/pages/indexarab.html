@@ -6,12 +6,19 @@
 <div class="container-fluid">
   <a href="{% url 'index' %}"style="color:blue;">English</a>
 <a href="{% url 'indexarab' %}"style="color:blue;">العربية</a>
+{%if request.user.is_authenticated and not request.user.is_anonymous %}
+{% if student.reserved == False %}
+<p class="center-text" style="color:blue;">  انت لم تحجز حتى الان .. قم بالحجز من خلال فودافون كاش على الرقم 01001305829 من خلال الرقم الذى ادخلته عند الاشتراك بالموقع{{student.name}}مرحبا  </p>
+{% elif student.reserved == True %}
+<p class="center-text" style="color:blue;"> لقد تم حجزك بنجاح{{student.name}},هنيئا 
+{% endif %}
+{% endif %}
     <section>
     <div class="jumbotron jumbotron-fluid p-3 m-0 text-center">
       <div class="d-inline-block align-top" >
      <h1 class="display-4">مدرستى</h1>
      <p class="lead">لدينا خبرة فى تدريس مادة الاحياء لاعوام عديدة</p>
-     <p class="lead">للاشتراك يجب الدفع عن طريق فودافون كاش على الرقم 01001305829</p>
+     <p class="lead">للاشتراك يجب الدفع عن طريق فودافون كاش على الرقم 01001305829 من خلال الرقم الذى ادخلته عند الاشتراك بالموقع</p>
      <p class="lead">هذه المنصة تابعة للاستاذ/ايهاب سالم معلم خبير فى تدريس مادة الاحياء</p>
     
    </div>

@@ -19,19 +19,10 @@ urlpatterns = [
     path('signinarab',views.signinarab,name="signinarab"),
     path('profile',views.profile,name="profile"),
     path('pizza',views.pizza,name="pizza"),
-    path('flavor/<int:pro_id>',views.product,name="flavor"),
-    path('about',views.about,name="about"),
-    path('products',views.productss,name="products"),
-    path('search',views.search,name="search"),
-    path('addtocard',views.addtocard,name="addtocard"),
-    path('mycard',views.mycard,name="mycard"),
-    path(' <int:orderdetail_id>',views.remove_from_cart,name='remove_from_cart'),
-     path('  <int:orderdetail_id>',views.add_to_quantity,name='add_to_quantity'),
-          path('   <int:orderdetail_id>',views.sub_from_quantity,name='sub_from_quantity'),
-          path('payment',views.paymentt,name="payment"),
-          path('rest',views.rest,name="rest"),
+   
+    
           path('admin', admin.site.urls),
-          path('generalsearch',views.generalsearch,name="generalsearch"),
+         
          # path('datalist',views.getdata),
          # path('datalistpk/<int:pk>',views.getdatapk),
           #path('cbv',views.cbv.as_view()),

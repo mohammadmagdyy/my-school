@@ -8,7 +8,7 @@
     <form id="identicalForm" class="form-horizontal" data-by-feedback-icons-valid="glyphicon glyphicon-ok"
     data-by-feedback-icons-invalid="glyphicon glyphicon-remove"
      data-by-feedback-icons-validating="glyphicon glyphicon-refresh"
-    method="POST"
+    method="POST" action="{% url 'signup' %}"
      >
      {% csrf_token %}
     <h2 class="text-center">sign up</h2>
@@ -51,7 +51,19 @@
             Looks good!
           </div>
         </div>
+        <div class="col-lg-7 mb-3">
+          <label for="validationServer01">user name</label>
+          <input type="text" class="form-control " style="height:45px;"name="user" id="validationServer0114" placeholder="Enter your user name" value="" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div>
+            <h6 id="username" style="display:none;">
+                  memorize well as you well use in signing in.
+            </h6>
+          </div>
         
+      </div>
       
       <div class="col-lg-7  mb-3">
           <label for="validationServer03">phone number</label>
@@ -158,60 +170,18 @@
       {% else %}
       <div class="form-row d-flex justify-content-center">
       <div class="col-lg-6 mb-3">
-      <button class="btn btn-outline-success" name="btnsubmitup"type="submit"data-toggle="modal"data-target="#exampleModal" onclick="showmodel()">Submit </button>
+      <button class="btn btn-outline-success" name="btnsubmitup"type="submit" >Submit </button>
       </div>
       <div class="col-lg-6 mb-3">
       <button class="btn btn-outline-danger" type="reset" >Reset</button>
       </div>
       </div>
+   
       
 
         
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog  modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Check</h5>
-            <button type="button" class="btn-close" data-dismiss="modal"id="btnexit" aria-label="Close">&times </button>
-          </div>
-          <div class="modal-body">
-            <form method="POST" id="frmpay" action="{% url 'payment' %}">
-                {% csrf_token %}
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Shipment Address:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentaddress" placeholder="Enter the address you want to recieve your order in.." value="{{shipadd}}"required>
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Shipment Phone:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="shipmentphone" placeholder="Enter your phone number" value="{{shipphon}}" required>
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Card Number:</label>
-                <input class="form-control" id="exampleInputEmail1" placeholder="333 333 333 333" name="cardnumber" value="{{cardno}}" required>
-              </div>
-              <div class="form-row">
-              <div class="col-lg-6 mb-3">
-                <label for="recipient-name" class="col-form-label">Expire Date:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="expiredate" placeholder="mm/yy" value="{{date}}"required>
-              </div>
-              <div class="col-lg-6 mb-3">
-                <label for="recipient-name" class="col-form-label">Security code:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="securitycode" placeholder="333" value="{{code}}" required>
-              </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer  justify-content-center">
-            <button type="button" id="mod" data-dismiss="modal"  class="btn btn-outline-warning">Close</button>
-            <button onclick="pay()" href="{% url 'payment' %}" name="btnpayment"  class="btn btn-outline-danger">Payment</button>
-          </div>
-        
-        </div>
-        
-      </div>
-    
-    </div>
+   
       {% endif %}
     </form>
     <script>
@@ -234,6 +204,18 @@
      }
     
     }
+    </script>
+    <script>
+      var un=document.getElementById("validationServer0114");
+      var us=document.getElementById("username");
+      un.onfocus=function(){
+        us.style.display="block";
+
+      }
+      un.onblur=function(){
+        us.style.display="none";
+
+      }
     </script>
     <script>
       var pass = document.getElementById("validationServer0112");
